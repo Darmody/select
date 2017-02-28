@@ -60,6 +60,7 @@ export default class Select extends React.Component
      optionFilterProp: 'value',
      optionLabelProp: 'value',
      notFoundContent: 'Not Found',
+     creatable: false,
    }
 
 constructor(props) {
