@@ -65,9 +65,10 @@ export default {
         childrenKeys.push(childValue);
       }
     });
-    if (tags) {
+    if (tags || props.creatable) {
       // tags value must be string
       let value = this.state.value || [];
+      value = Array.isArray(value) ? value : [value];
       value = value.filter((singleValue) => {
         return childrenKeys.indexOf(singleValue.key) === -1 &&
           (!inputValue || String(singleValue.key).indexOf(String(inputValue)) > -1);
