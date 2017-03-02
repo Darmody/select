@@ -816,7 +816,7 @@ const Select = React.createClass({
               {...UNSELECTABLE_ATTRIBUTE}
               onMouseDown={preventDefaultEvent}
               className={choiceClassName}
-              key={singleValue.key}
+              key={singleValue.key + (+new Date())}
               title={title}
             >
               <div className={`${prefixCls}-selection__choice__content`}>{content}</div>
