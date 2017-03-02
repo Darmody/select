@@ -27,6 +27,7 @@ export default {
     const inputValue = iv === undefined ? this.state.inputValue : iv;
     const childrenKeys = [];
     const tags = props.tags;
+    const creatable = props.creatable;
     React.Children.forEach(children, (child) => {
       if (child.type.isSelectOptGroup) {
         const innerItems = this.renderFilterOptionsFromChildren(child.props.children, false);
@@ -61,16 +62,16 @@ export default {
           {...child.props}
         />);
       }
-      if (tags && !child.props.disabled) {
+      if ((tags || creatable) && !child.props.disabled) {
         childrenKeys.push(childValue);
       }
     });
-    if (tags || props.creatable) {
+    if (tags || creatable) {
       // tags value must be string
       let value = this.state.value || [];
       value = Array.isArray(value) ? value : [value];
       value = value.filter((singleValue) => {
-        return childrenKeys.indexOf(singleValue.key) === -1 &&
+        return !value && childrenKeys.indexOf(singleValue.key) === -1 &&
           (!inputValue || String(singleValue.key).indexOf(String(inputValue)) > -1);
       });
       sel = sel.concat(value.map((singleValue) => {
