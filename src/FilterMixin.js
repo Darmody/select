@@ -61,7 +61,7 @@ export default {
           {...child.props}
         />);
       }
-      if (tags && !child.props.disabled) {
+      if ((tags || props.creatable) && !child.props.disabled) {
         childrenKeys.push(childValue);
       }
     });
@@ -73,13 +73,13 @@ export default {
         return childrenKeys.indexOf(singleValue.key) === -1 &&
           (!inputValue || String(singleValue.key).indexOf(String(inputValue)) > -1);
       });
-      sel = sel.concat(value.map((singleValue) => {
+      sel = sel.concat(value.map((singleValue, index) => {
         const key = singleValue.key;
         return (<MenuItem
           style={UNSELECTABLE_STYLE}
           attribute={UNSELECTABLE_ATTRIBUTE}
           value={key}
-          key={key}
+          key={key + index}
         >
           {key}
         </MenuItem>);
