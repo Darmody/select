@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>multiple.js - example - dc-select@6.7.10</title>
+  <title>multiple.js - example - dc-select@6.8.7</title>
   <meta name="viewport"
         content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
   <meta charset="utf-8"/>
@@ -263,7 +263,7 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
 <body>
   <div class="container">
     <div class="header">
-      <h1>dc-select@6.7.10</h1>
+      <h1>dc-select@6.8.7</h1>
 
       <p>React Select</p>
     </div>
@@ -285,32 +285,33 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
   )</span>;
 }
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onSelect</span>(<span class="hljs-params"></span>) </span>{
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">arguments</span>);
-}
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+  state = {
+    useAnim: <span class="hljs-number">0</span>,
+    value: [<span class="hljs-string">'a10'</span>],
+  }
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onDeselect</span>(<span class="hljs-params"></span>) </span>{
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">arguments</span>);
-}
-
-<span class="hljs-keyword">const</span> Test = React.createClass({
-  getInitialState() {
-    <span class="hljs-keyword">return</span> {
-      useAnim: <span class="hljs-number">0</span>,
-      value: [<span class="hljs-string">'a10'</span>],
-    };
-  },
-  onChange(value) {
+  onChange = (value) =&gt; {
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'onChange'</span>, value);
     <span class="hljs-keyword">this</span>.setState({
       value,
     });
-  },
-  useAnim(e) {
+  }
+
+  onSelect = (...args) =&gt; {
+    <span class="hljs-built_in">console</span>.log(args);
+  }
+
+  onDeselect = (...args) =&gt; {
+    <span class="hljs-built_in">console</span>.log(args);
+  }
+
+  useAnim = (e) =&gt; {
     <span class="hljs-keyword">this</span>.setState({
       useAnim: e.target.checked,
     });
-  },
+  }
+
   render() {
     <span class="hljs-keyword">const</span> dropdownMenuStyle = {
       maxHeight: <span class="hljs-number">200</span>,
@@ -335,33 +336,35 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
             <span class="hljs-attribute">dropdownMenuStyle</span>=<span class="hljs-value">{dropdownMenuStyle}</span>
             <span class="hljs-attribute">style</span>=<span class="hljs-value">{{</span> <span class="hljs-attribute">width:</span> <span class="hljs-attribute">500</span> }}
             <span class="hljs-attribute">multiple</span>
+            <span class="hljs-attribute">allowClear</span>
             <span class="hljs-attribute">optionFilterProp</span>=<span class="hljs-value">"children"</span>
             <span class="hljs-attribute">optionLabelProp</span>=<span class="hljs-value">"children"</span>
-            <span class="hljs-attribute">onSelect</span>=<span class="hljs-value">{onSelect}</span>
-            <span class="hljs-attribute">onDeselect</span>=<span class="hljs-value">{onDeselect}</span>
+            <span class="hljs-attribute">onSelect</span>=<span class="hljs-value">{this.onSelect}</span>
+            <span class="hljs-attribute">onDeselect</span>=<span class="hljs-value">{this.onDeselect}</span>
             <span class="hljs-attribute">placeholder</span>=<span class="hljs-value">"please select"</span>
             <span class="hljs-attribute">onChange</span>=<span class="hljs-value">{this.onChange}</span>
-            <span class="hljs-attribute">tokenSeparators</span>=<span class="hljs-value">{['</span> ', ',']}
-          &gt;</span>
+            <span class="hljs-attribute">onFocus</span>=<span class="hljs-value">{()</span> =&gt;</span> console.log('focus')}
+            tokenSeparators={[' ', ',']}
+          &gt;
             {children}
           <span class="hljs-tag">&lt;/<span class="hljs-title">Select</span>&gt;</span>
         <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
       <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
     )</span>;
-  },
-});
+  }
+}
 
 ReactDOM.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">Test</span> /&gt;</span>, document.getElementById('__react-content'));
 </span></code></pre></div>
   </div>
-  <a href="http://github.com/react-component/select">
+  <a href="http://github.com/darmody/select">
     <img style="position: absolute; top: 0; right: 0; border: 0;"
          src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67"
          alt="Fork me on GitHub"
          data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
   </a>
   <script>FastClick.attach(document.body);</script>
-  <script src="common.js?nowrap"></script>
+  <script src="../common.js?nowrap"></script>
   <script src="multiple.js?nowrap"></script>
 </body>
 
